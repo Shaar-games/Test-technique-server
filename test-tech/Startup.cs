@@ -14,6 +14,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Npgsql;
+
+
+
 
 namespace test_tech
 {
@@ -22,6 +26,14 @@ namespace test_tech
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        public async Task StartDBAsync()
+        {
+            string connString = "Host=myserver;Username=mylogin;Password=mypass;Database=mydatabase";
+
+            await using var conn = new NpgsqlConnection(connString);
+            await conn.OpenAsync();
         }
 
         public IConfiguration Configuration { get; }
@@ -39,6 +51,8 @@ namespace test_tech
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            StartDBAsync(); //function async dans du non async oui
 
             app.UseHttpsRedirection();
 

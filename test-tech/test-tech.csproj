@@ -5,5 +5,11 @@
     <RootNamespace>test_tech</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\PostgreSQL\Npgsql\bin\net451\Npgsql.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 
 </Project>
